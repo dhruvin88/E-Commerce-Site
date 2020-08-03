@@ -7,7 +7,8 @@ import CardForm from '../CardForm/CardForm';
 import { Container } from 'react-bootstrap';
 import { Switch, Route } from 'react-router-dom';
 import { Home, Page1, Page2, Page3 } from '../pages';
-import { Nav } from '../nav/nav';
+import { Nav } from '../Nav/nav.js';
+import Footer from '../Footer/Footer';
 
 const stripePromise = loadStripe(properties.stripeKey);
 
@@ -34,6 +35,7 @@ function App() {
       <Container>
         <Main></Main>
       </Container>
+      <Footer></Footer>
     </div>
   );
 }
