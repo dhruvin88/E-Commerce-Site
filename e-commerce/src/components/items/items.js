@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import "./items.css";
+import Item from '../item/item'
+import {Row, Col} from 'react-bootstrap';
+
 
 function Items() {
   useEffect(() => {
@@ -9,11 +12,8 @@ function Items() {
   }, []);
 
   const [items, setItems] = useState([{
-    item: {},
-    store: {},
-    images: {},
-    background: {},
-    cost: {}
+    item: {images: {}},
+    store: {}
   }]);
 
   const fetchItems = async () => {
@@ -22,23 +22,20 @@ function Items() {
     );
 
     const items = await data.json();
-    console.log(items.data);
     setItems(items.data);
   };
 
   return (
-    <div>
-      {items.map(item => (
-        //<img src={item.item.images.background}></img>,
-        <h1>{item.item.name}</h1>
-        //<div>{item.item.store?.cost}</div>
-      ))}
-    </div>
+    <Row>
+      <Col md={{ span: 6, offset: 3 }}>
+      <div>
+        {items.map(item => (
+          <Item name={item.item.name} imgPath={item.item.images.background} price={item.store.cost}/>
+        ))}
+      </div>
+      </Col>
+    </Row>
   );
 }
-
-Items.propTypes = {};
-
-Items.defaultProps = {};
 
 export default Items;
